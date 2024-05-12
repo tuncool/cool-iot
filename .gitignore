@@ -1,0 +1,6 @@
+*.exe
+cool-iot-*
+bin
+.vscode
+.idea
+test
