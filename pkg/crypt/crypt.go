@@ -9,13 +9,14 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"errors"
-	"github.com/bwmarrin/snowflake"
-	"github.com/google/uuid"
-	"github.com/oklog/ulid/v2"
 	"math/rand"
 	"regexp"
 	"sort"
 	"time"
+
+	"github.com/bwmarrin/snowflake"
+	"github.com/google/uuid"
+	"github.com/oklog/ulid/v2"
 )
 
 const SnowStartTime = 1700000000000

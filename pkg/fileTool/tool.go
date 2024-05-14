@@ -1,4 +1,4 @@
-package sysTool
+package fileTool
 
 import (
 	"encoding/base64"

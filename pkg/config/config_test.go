@@ -2,9 +2,10 @@ package config
 
 import (
 	"fmt"
-	"golang.org/x/exp/slog"
 	"testing"
 	"time"
+
+	"golang.org/x/exp/slog"
 )
 
 func Test(t *testing.T) {
@@ -16,9 +17,7 @@ func Test(t *testing.T) {
 	}
 	fmt.Println(conf)
 	conf.Remark = "XNps config file"
-	conf.WebPort = 8090
 	conf.InitTime = time.Now().Unix()
-	conf.AppKeys = crypt.RandStr().AddNum().AddLetter().GenerateList(24, 5)
 	err = dr.Update(conf)
 	if err != nil {
 		return
@@ -26,9 +25,9 @@ func Test(t *testing.T) {
 
 }
 func Test2(t *testing.T) {
-	base := "E:/Magic/tunpxs/conf/server2.toml"
-	if sysTool.DirExisted("E:/Magic/tunpxs/conf") {
-		sysTool.CreateFolder("E:/Magic/tunpxs/conf")
+	base := "./conf/server2.toml"
+	if fileTool.DirExisted("./conf") {
+		fileTool.CreateFolder("./conf")
 	}
 	err := CreateNewInitFile(base)
 	if err != nil {
@@ -41,9 +40,6 @@ func Test2(t *testing.T) {
 		slog.Error(err.Error())
 		return
 	}
-	conf.WebPort = 8090
 	conf.InitTime = time.Now().Unix()
-	conf.AppKeys = crypt.RandStr().AddNum().AddLetter().GenerateList(24, 10)
-	dr.Update(conf)
 
 }

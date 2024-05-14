@@ -1,6 +1,7 @@
 package daemon
 
 import (
+	"cool-iot/pkg/common"
 	"io/ioutil"
 	"log"
 	"os"
@@ -108,7 +109,7 @@ func stop(f string, p string, pidPath string) {
 		p := strings.Split(p, `\`)
 		c = exec.Command("taskkill", "/F", "/IM", p[len(p)-1])
 	} else {
-		b, err := ioutil.ReadFile(filepath.Join(pidPath, f+".pid"))
+		b, err := os.ReadFile(filepath.Join(pidPath, f+".pid"))
 		if err == nil {
 			c = exec.Command("/bin/bash", "-c", `kill -9 `+string(b))
 		} else {

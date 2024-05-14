@@ -6,14 +6,16 @@ import (
 )
 
 type Config struct {
-	Id       int32     `gorm:"column:id;type:int;primaryKey;autoIncrement" json:"-"`
-	OrgName  string    `gorm:"column:org_name;type:varchar(128);not null" json:"org_name"`
-	CreateAt time.Time `gorm:"column:create_at;autoCreateTime" json:"create_at"`
-	// AppKey     string    `gorm:"column:app_key;type:varchar(255);not null" json:"app_key"` // Used to sign the token
-	BridgePort int    `gorm:"column:bridge_port;type:int;not null;default:9871" json:"bridge_port"`
-	UsagePorts string `gorm:"column:usage_port;type:varchar(512);not null;default:8000-8100" json:"usage_ports"`
-	WebPort    int    `gorm:"column:web_port;type:int;not null;default:9870" json:"web_port"`
-	Remark     string `gorm:"column:remark;type:varchar(255);" json:"remark"`
+	Id          int32     `gorm:"column:id;type:int;primaryKey;autoIncrement" json:"-"`
+	OrgName     string    `gorm:"column:org_name;type:varchar(128);not null" json:"org_name"`
+	CreateAt    time.Time `gorm:"column:create_at;autoCreateTime" json:"create_at"`
+	AppKey      string    `gorm:"column:app_key;type:varchar(255);not null" json:"app_key"` // Used to sign the token
+	BridgePort  int       `gorm:"column:bridge_port;type:int;not null;default:9871" json:"bridge_port"`
+	SysEmile    string    `gorm:"column:bridge_port;type:int;not null;default:" json:"sys_emile"`
+	SysEmileKey string    `gorm:"column:bridge_port;type:int;not null;default:" json:"sys_emile_key"`
+	ServicePort int       `gorm:"column:service_port;type:int;not null;default:9871" json:"service_port"`
+	WebPort     int       `gorm:"column:web_port;type:int;not null;default:9870" json:"web_port"`
+	Remark      string    `gorm:"column:remark;type:varchar(255);" json:"remark"`
 }
 
 func (*Config) TableName() string {

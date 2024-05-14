@@ -1,10 +1,12 @@
 package common
 
 import (
-	"golang.org/x/exp/slog"
+	"cool-iot/pkg/fileTool"
 	"os"
 	"path/filepath"
 	"runtime"
+
+	"golang.org/x/exp/slog"
 )
 
 var ConfPath string
@@ -22,7 +24,7 @@ func GetRunPath() string {
 			return "./"
 		}
 	} else {
-		if path = GetInstallPath(); !FileExists(path) {
+		if path = GetInstallPath(); !fileTool.FileExisted(path) {
 			return GetAppPath()
 		}
 	}
@@ -40,7 +42,7 @@ func GetInstallPath() string {
 	if IsWindows() {
 		path = `C:\Program Files\nps`
 	} else {
-		path = "/etc/tunpx"
+		path = "/etc/cool-iot"
 	}
 
 	return path
@@ -68,7 +70,7 @@ func GetLogPath() string {
 	if IsWindows() {
 		path = filepath.Join(GetAppPath(), "tunpxs.log")
 	} else {
-		path = "/var/log/tunpx.log"
+		path = "/var/log/cool-iot.log"
 	}
 	return path
 }
@@ -77,9 +79,9 @@ func GetLogPath() string {
 func GetNpcLogPath() string {
 	var path string
 	if IsWindows() {
-		path = filepath.Join(GetAppPath(), "tunpx.log")
+		path = filepath.Join(GetAppPath(), "cool-iot.log")
 	} else {
-		path = "/var/log/tunpx.log"
+		path = "/var/log/cool-iot.log"
 	}
 	return path
 }
@@ -98,29 +100,29 @@ func GetTmpPath() string {
 // config file path
 func GetConfigPath() (path string) {
 	if IsWindows() {
-		path = "conf/tunpx.conf"
-		if sysTool.FileExisted(path) {
+		path = "conf/cool-iot.conf"
+		if fileTool.FileExisted(path) {
 			return
-		} else if path = filepath.Join(GetAppPath(), "conf/tunpx.conf"); sysTool.FileExisted(path) {
+		} else if path = filepath.Join(GetAppPath(), "conf/cool-iot.conf"); fileTool.FileExisted(path) {
 			return
 		} else {
 			slog.Error("加载配置文件失败，请检查", "配置文件状态", "不存在")
 			os.Exit(0)
 		}
 	} else {
-		path = "conf/tunpx.conf"
-		if sysTool.FileExisted(path) {
+		path = "conf/cool-iot.conf"
+		if fileTool.FileExisted(path) {
 			return
-		} else if path = "/etc/tunpx/conf/tunpx.conf"; sysTool.FileExisted(path) {
+		} else if path = "/etc/cool-iot/conf/cool-iot.conf"; fileTool.FileExisted(path) {
 			return
-		} else if path = "~/.tunpx/tunpx.conf"; sysTool.FileExisted(path) {
+		} else if path = "~/.cool-iot/cool-iot.conf"; fileTool.FileExisted(path) {
 			return
 		} else {
 
 		}
 		_, err := os.Lstat(path)
 		if err != nil {
-			path = "/etc/tunpx/conf/tunpx.conf"
+			path = "/etc/cool-iot/conf/cool-iot.conf"
 		}
 	}
 	return

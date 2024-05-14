@@ -10,7 +10,6 @@ import (
 const (
 	SQLITE = 1
 	MYSQL  = 2
-	SQL    = 3
 )
 
 type Driver struct {

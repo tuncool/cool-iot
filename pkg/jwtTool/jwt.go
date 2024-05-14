@@ -2,14 +2,15 @@ package jwtTool
 
 import (
 	"errors"
-	"github.com/golang-jwt/jwt"
 	"math/rand"
 	"time"
+
+	"github.com/golang-jwt/jwt"
 )
 
 const (
-	MaxRandKeys  = 100
-	MaxKeyLength = 64
+	MaxRandKeys  = 10
+	MaxKeyLength = 40
 )
 const randBase = "0123456789abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM"
 
